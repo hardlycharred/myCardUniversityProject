@@ -6,7 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
@@ -18,32 +20,40 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        new FetchDBTask().execute();
+        final EditText firstNameEntry = (EditText) findViewById(R.id.firstNameEntry);
+        final Button submit = (Button) findViewById(R.id.submitDetails);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Customer customer = new Customer();
+                customer.setFirstName(firstNameEntry.getText().toString());
+                new FetchDBTask().execute(customer);
+            }
+        });
     }
 
-    class FetchDBTask extends AsyncTask<Void, Void, SQLiteDatabase> {
+    class FetchDBTask extends AsyncTask<Customer, Void, Customer> {
 
         @Override
-        protected SQLiteDatabase doInBackground(Void... params) {
+        protected Customer doInBackground(Customer... params) {
             customerDBHelper = new CustomerDBHelper(getApplicationContext());
             db = customerDBHelper.getWritableDatabase();
-            return db;
+            return params[0];
         }
 
         @Override
-        protected void onPostExecute(SQLiteDatabase sqLiteDatabase) {
+        protected void onPostExecute(Customer curCustomer) {
+
             // Create a new map of values, where column names are the keys
             ContentValues values = new ContentValues();
-            values.put(CustomerDBContract.FeedEntry.COLUMN_NAME_FIRST_NAME, "FirstNameTest");
+            values.put(CustomerDBContract.FeedEntry.COLUMN_NAME_FIRST_NAME, curCustomer.getFirstName());
             values.put(CustomerDBContract.FeedEntry.COLUMN_NAME_LAST_NAME, "LastNameTest");
             values.put(CustomerDBContract.FeedEntry.COLUMN_NAME_EMAIL, "EmailTest");
             values.put(CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER, "CardNumTest");
 
 // Insert the new row, returning the primary key value of the new row
             long newRowId = db.insert(CustomerDBContract.FeedEntry.TABLE_NAME, null, values);
-            Log.d("New row num", Long.toString(newRowId));
-            TextView firstName = (TextView) findViewById(R.id.firstName);
-
+            curCustomer.setId(newRowId);
 
             SQLiteDatabase db = customerDBHelper.getReadableDatabase();
 
@@ -55,8 +65,8 @@ public class LoginActivity extends AppCompatActivity {
             };
 
             // Filter results - WHERE first_name = "FirstNameTest"
-            String selection = CustomerDBContract.FeedEntry.COLUMN_NAME_FIRST_NAME + " = ?";
-            String[] selectionArgs = { "FirstNameTest" };
+            String selection = CustomerDBContract.FeedEntry.COLUMN_NAME_FIRST_NAME + " = ? AND " + CustomerDBContract.FeedEntry._ID + " = ?";
+            String[] selectionArgs = {curCustomer.getFirstName(), curCustomer.getId().toString()};
 
             Cursor cursor = db.query(
                     CustomerDBContract.FeedEntry.TABLE_NAME,                     // The table to query
@@ -68,8 +78,11 @@ public class LoginActivity extends AppCompatActivity {
                     null                                 // The sort order
             );
 
+            TextView firstName = (TextView) findViewById(R.id.firstName);
+            TextView id = (TextView) findViewById(R.id.id);
             if(cursor.moveToNext()) {
                 firstName.setText(cursor.getString(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry.COLUMN_NAME_FIRST_NAME)));
+                id.setText(cursor.getString(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry._ID)));
             }
             cursor.close();
         }

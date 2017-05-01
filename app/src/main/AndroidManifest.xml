@@ -45,14 +45,10 @@
         <activity
             android:name=".ViewMapActivity"
             android:label="@string/title_activity_view_map"
-            android:parentActivityName=".HomeScreenActivity"></activity>
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login"
+            android:parentActivityName=".HomeScreenActivity" />
+        <activity android:name=".LoginActivity"
             android:parentActivityName=".HomeScreenActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.charliehard.gobus.HomeScreenActivity" />
+
         </activity>
     </application>
 

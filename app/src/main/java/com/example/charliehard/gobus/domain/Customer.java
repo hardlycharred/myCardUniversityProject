@@ -1,4 +1,4 @@
-package com.example.charliehard.gobus;
+package com.example.charliehard.gobus.domain;
 
 /**
  * Created by Charlie Hard on 1/05/2017.

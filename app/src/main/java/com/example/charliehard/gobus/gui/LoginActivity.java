@@ -1,4 +1,4 @@
-package com.example.charliehard.gobus;
+package com.example.charliehard.gobus.gui;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -10,6 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.charliehard.gobus.R;
+import com.example.charliehard.gobus.domain.Customer;
+import com.example.charliehard.gobus.sqlite_friends.CustomerDBContract;
+import com.example.charliehard.gobus.sqlite_friends.CustomerDBHelper;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -30,6 +35,12 @@ public class LoginActivity extends AppCompatActivity {
                 new FetchDBTask().execute(customer);
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        db.close();
     }
 
     class FetchDBTask extends AsyncTask<Customer, Void, Customer> {

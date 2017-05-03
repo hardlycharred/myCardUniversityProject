@@ -1,4 +1,4 @@
-package com.example.charliehard.gobus;
+package com.example.charliehard.gobus.gui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.example.charliehard.gobus.R;
 
 public class HomeScreenActivity extends AppCompatActivity {
 

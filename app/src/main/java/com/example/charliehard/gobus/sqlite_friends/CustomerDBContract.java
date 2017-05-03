@@ -1,4 +1,4 @@
-package com.example.charliehard.gobus;
+package com.example.charliehard.gobus.sqlite_friends;
 
 import android.provider.BaseColumns;
 

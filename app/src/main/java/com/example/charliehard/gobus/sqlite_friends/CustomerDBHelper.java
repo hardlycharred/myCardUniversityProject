@@ -1,4 +1,4 @@
-package com.example.charliehard.gobus;
+package com.example.charliehard.gobus.sqlite_friends;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

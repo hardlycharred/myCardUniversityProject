@@ -31,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText emailEntry = (EditText) findViewById(R.id.emailEntry);
         final EditText cardNumEntry = (EditText) findViewById(R.id.cardNumEntry);
         final Button submit = (Button) findViewById(R.id.submitDetails);
+        firstNameEntry.requestFocus();
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,7 +49,9 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        db.close();
+        if (db != null) {
+            db.close();
+        }
     }
 
     class FetchDBTask extends AsyncTask<Customer, Void, Customer> {

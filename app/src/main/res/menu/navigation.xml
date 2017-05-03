@@ -12,9 +12,9 @@
         android:title="Map" />
 
     <item
-        android:id="@+id/navigation_login"
+        android:id="@+id/navigation_register"
         android:icon="@drawable/ic_login_black_24dp"
-        android:title="Login" />
+        android:title="Register" />
 
 
 

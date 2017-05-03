@@ -26,7 +26,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                 case R.id.navigation_map:
                     startActivity(new Intent(HomeScreenActivity.this, ViewMapActivity.class));
                     return true;
-                case R.id.navigation_login:
+                case R.id.navigation_register:
                     startActivity(new Intent(HomeScreenActivity.this, RegisterActivity.class));
                     return true;
             }

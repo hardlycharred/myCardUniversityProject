@@ -12,7 +12,7 @@ public class CustomerDBHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "FeedReader.db";
-    protected static final String SQL_CREATE_ENTRIES =
+    public static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + CustomerDBContract.FeedEntry.TABLE_NAME + " (" +
                     CustomerDBContract.FeedEntry._ID + " INTEGER PRIMARY KEY," +
                     CustomerDBContract.FeedEntry.COLUMN_NAME_FIRST_NAME + " TEXT," +
@@ -20,7 +20,7 @@ public class CustomerDBHelper extends SQLiteOpenHelper {
                     CustomerDBContract.FeedEntry.COLUMN_NAME_EMAIL + " TEXT," +
                     CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER + " TEXT)";
 
-    protected static final String SQL_DELETE_ENTRIES =
+    public static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + CustomerDBContract.FeedEntry.TABLE_NAME;
 
     public CustomerDBHelper(Context context) {

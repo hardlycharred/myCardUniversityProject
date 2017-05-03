@@ -47,7 +47,7 @@
             android:label="@string/title_activity_view_map"
             android:parentActivityName=".gui.HomeScreenActivity" />
         <activity
-            android:name=".gui.LoginActivity"
+            android:name=".gui.RegisterActivity"
             android:parentActivityName=".gui.HomeScreenActivity">
 
         </activity>

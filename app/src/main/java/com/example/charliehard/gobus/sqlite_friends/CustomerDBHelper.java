@@ -14,11 +14,11 @@ public class CustomerDBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "FeedReader.db";
     public static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + CustomerDBContract.FeedEntry.TABLE_NAME + " (" +
-                    CustomerDBContract.FeedEntry._ID + " INTEGER PRIMARY KEY," +
+                    CustomerDBContract.FeedEntry.COLUMN_NAME_EMAIL + " STRING PRIMARY KEY," +
                     CustomerDBContract.FeedEntry.COLUMN_NAME_FIRST_NAME + " TEXT," +
                     CustomerDBContract.FeedEntry.COLUMN_NAME_LAST_NAME + " TEXT," +
-                    CustomerDBContract.FeedEntry.COLUMN_NAME_EMAIL + " TEXT," +
-                    CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER + " TEXT)";
+                    CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER + " TEXT," +
+                    CustomerDBContract.FeedEntry.COLUMN_NAME_PASSWORD + " TEXT)";
 
     public static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + CustomerDBContract.FeedEntry.TABLE_NAME;

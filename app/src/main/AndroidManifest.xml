@@ -48,8 +48,7 @@
             android:parentActivityName=".gui.HomeScreenActivity" />
         <activity
             android:name=".gui.RegisterActivity"
-            android:parentActivityName=".gui.HomeScreenActivity">
-        </activity>
+            android:parentActivityName=".gui.HomeScreenActivity"></activity>
     </application>
 
 </manifest>

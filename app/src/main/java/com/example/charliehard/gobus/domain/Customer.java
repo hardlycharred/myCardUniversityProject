@@ -1,10 +1,12 @@
 package com.example.charliehard.gobus.domain;
 
+import java.io.Serializable;
+
 /**
  * Created by Charlie Hard on 1/05/2017.
  */
 
-public class Customer {
+public class Customer implements Serializable {
 
     private Long id;
     private String firstName;

@@ -14,6 +14,7 @@ public final class CustomerDBContract {
     /* Inner class that defines the table contents */
     public static class FeedEntry implements BaseColumns {
         public static final String TABLE_NAME = "customer_details";
+        public static final String ROWID = "rowid";
         public static final String COLUMN_NAME_FIRST_NAME = "first_name";
         public static final String COLUMN_NAME_LAST_NAME = "last_name";
         public static final String COLUMN_NAME_EMAIL = "email";

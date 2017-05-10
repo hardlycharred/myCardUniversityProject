@@ -9,10 +9,12 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.charliehard.gobus.R;
+import com.example.charliehard.gobus.domain.Customer;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
+    private Customer curCustomer;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -40,7 +42,13 @@ public class HomeScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
+        Intent intent = getIntent();
+        Customer curCustomer = (Customer) intent.getSerializableExtra("curCustomer");
+        if (curCustomer != null) {
+            mTextMessage = (TextView) findViewById(R.id.message);
+            mTextMessage.setText("Hello, " + curCustomer.getFirstName());
+        }
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }

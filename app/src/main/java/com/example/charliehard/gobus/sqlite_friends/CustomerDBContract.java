@@ -18,6 +18,8 @@ public final class CustomerDBContract {
         public static final String COLUMN_NAME_LAST_NAME = "last_name";
         public static final String COLUMN_NAME_EMAIL = "email";
         public static final String COLUMN_NAME_CARD_NUMBER = "card_number";
+        public static final String COLUMN_NAME_PASSWORD = "password";
+
 
     }
 

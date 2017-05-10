@@ -26,10 +26,13 @@ public class HomeScreenActivity extends AppCompatActivity {
                     mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_map:
-                    startActivity(new Intent(HomeScreenActivity.this, ViewMapActivity.class));
+                    startActivity(new Intent(HomeScreenActivity.this, MapsActivity.class));
                     return true;
                 case R.id.navigation_register:
                     startActivity(new Intent(HomeScreenActivity.this, RegisterActivity.class));
+                    return true;
+                case R.id.navigation_login:
+                    startActivity(new Intent(HomeScreenActivity.this, LoginActivity.class));
                     return true;
             }
             return false;

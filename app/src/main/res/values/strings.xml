@@ -3,5 +3,8 @@
     <string name="title_home">Home</string>
     <string name="title_map">Map</string>
     <string name="title_activity_view_map">Dunedin Map</string>
+    <string name="title_activity_new_maps">The Octagon, Dunedin</string>
+    <string name="title_activity_octagon_map">Dunedin Map</string>
+    <string name="title_activity_maps">The Octagon, Dunedin</string>
 
 </resources>

@@ -44,8 +44,8 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Customer curCustomer = (Customer) intent.getSerializableExtra("curCustomer");
-        if (curCustomer != null) {
-            mTextMessage = (TextView) findViewById(R.id.message);
+        mTextMessage = (TextView) findViewById(R.id.message);
+        if (curCustomer != null && mTextMessage != null) {
             mTextMessage.setText("Hello, " + curCustomer.getFirstName());
         }
 

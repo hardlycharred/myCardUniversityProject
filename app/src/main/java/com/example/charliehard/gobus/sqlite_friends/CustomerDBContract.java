@@ -3,7 +3,7 @@ package com.example.charliehard.gobus.sqlite_friends;
 import android.provider.BaseColumns;
 
 /**
- * Created by Charlie Hard on 1/05/2017.
+ * Created by Charlie Hard on 1/05/2017. !!
  */
 
 public final class CustomerDBContract {

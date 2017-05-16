@@ -52,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+    Intent intent = getIntent();
 
     @Override
     protected void onDestroy() {

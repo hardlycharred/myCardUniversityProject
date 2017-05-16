@@ -49,7 +49,10 @@ public class HomeScreenActivity extends AppCompatActivity {
         Customer curCustomer = (Customer) intent.getSerializableExtra("curCustomer");
         mTextMessage = (TextView) findViewById(R.id.message);
         if (curCustomer != null && mTextMessage != null) {
-            mTextMessage.setText("Hello, " + curCustomer.getFirstName());
+            setContentView(R.layout.activity_home_screen_logged_in);
+            mTextMessage = (TextView) findViewById(R.id.textView3);
+            mTextMessage.setText("Hello, " + curCustomer.getFirstName() + "!");
+            //setContentView(R.layout.activity_home_screen_logged_in); uncomment to display alternative home page when logged in
         }
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

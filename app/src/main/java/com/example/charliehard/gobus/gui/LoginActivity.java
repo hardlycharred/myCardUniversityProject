@@ -40,6 +40,15 @@ public class LoginActivity extends AppCompatActivity {
                 new FetchDBTask().execute(customer);
             }
         });
+
+        final Button signUpButton = (Button) findViewById(R.id.signUpButton);
+
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
     }
 
     @Override

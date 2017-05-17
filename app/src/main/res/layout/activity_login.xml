@@ -13,20 +13,6 @@
 
     1
 
-    <Button
-        android:id="@+id/signUpButton"
-        android:layout_width="106dp"
-        android:layout_height="39dp"
-        android:layout_marginBottom="82dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/button_background"
-        android:text="Sign up"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="#FDFDFE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
     <LinearLayout
         android:layout_width="395dp"
         android:layout_height="0dp"
@@ -37,16 +23,17 @@
         android:orientation="vertical"
         android:weightSum="1"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.25">
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="241dp"
-
+            android:layout_width="269dp"
+            android:layout_height="147dp"
+            android:layout_gravity="center"
             app:srcCompat="@drawable/app_logo" />
 
 
@@ -83,6 +70,20 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             tools:layout_editor_absoluteY="499dp" />
+
+        <Button
+            android:id="@+id/signUpButton"
+            style="@style/button_style"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/button_background"
+            android:text="Sign up"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#FDFDFE"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteY="436dp" />
 
     </LinearLayout>
 

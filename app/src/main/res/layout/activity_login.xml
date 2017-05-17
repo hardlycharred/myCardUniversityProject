@@ -13,19 +13,6 @@
 
     1
 
-    <Button
-        android:id="@+id/signUpButton"
-        android:layout_width="74dp"
-        android:layout_height="38dp"
-        android:layout_marginBottom="48dp"
-        android:layout_marginRight="18dp"
-        android:background="@drawable/button_background"
-        android:text="Sign up"
-        android:textAllCaps="false"
-        android:textColor="#FDFDFE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
     <LinearLayout
         android:layout_width="395dp"
         android:layout_height="0dp"
@@ -42,8 +29,8 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="279dp"
+            android:layout_width="319dp"
+            android:layout_height="241dp"
 
             app:srcCompat="@drawable/app_logo" />
 
@@ -81,6 +68,19 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             tools:layout_editor_absoluteY="499dp" />
+
+        <Button
+            android:id="@+id/signUpButton"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginBottom="48dp"
+            android:layout_marginRight="18dp"
+            android:background="@drawable/button_background"
+            android:text="Sign up"
+            android:textAllCaps="false"
+            android:textColor="#FDFDFE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
     </LinearLayout>
 

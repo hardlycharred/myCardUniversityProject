@@ -25,22 +25,23 @@
         <TextView
             android:id="@+id/Register"
             android:layout_width="match_parent"
-            android:layout_height="161dp"
+            android:layout_height="111dp"
             android:fontFamily="cursive"
             android:text="Register"
             android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textAppearance="@android:style/TextAppearance.Widget.Toolbar.Title"
+            android:textAppearance="@android:style/TextAppearance.Material.Large"
             android:textColor="#FDFDFE"
             android:textSize="100sp"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/FirstnameEntry"
+            android:id="@+id/firstNameEntry"
             style="@style/editText_style"
             android:layout_width="270dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:hint="First name"
+            android:gravity="center_horizontal"
+            android:hint="First name "
             android:inputType="textPersonName" />
 
         <EditText

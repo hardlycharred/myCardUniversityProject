@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
         final Button signUpButton = (Button) findViewById(R.id.signUpButton);
 
         signUpButton.setOnClickListener(new View.OnClickListener() {

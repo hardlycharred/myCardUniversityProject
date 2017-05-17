@@ -51,12 +51,14 @@
         <EditText
             android:id="@+id/emailEntry"
             style="@style/editText_style"
+            android:fontFamily="sans-serif"
             android:hint="Username/Email"
             android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/passwordEntry"
             style="@style/editText_style"
+            android:fontFamily="sans-serif"
             android:hint="Password"
             android:inputType="textPassword" />
 

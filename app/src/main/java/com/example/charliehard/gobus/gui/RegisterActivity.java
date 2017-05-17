@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.charliehard.gobus.R;
 import com.example.charliehard.gobus.domain.Customer;
+import com.example.charliehard.gobus.domain.Card;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBContract;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBHelper;
 
@@ -67,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
         protected Customer doInBackground(Customer... params) {
             customerDBHelper = new CustomerDBHelper(getApplicationContext());
             db = customerDBHelper.getWritableDatabase();
-//            customerDBHelper.onUpgrade(db, 2, 3); // Clears the DB
+            customerDBHelper.onUpgrade(db, 3, 4); // Clears the DB
             return params[0];
         }
 
@@ -76,18 +77,43 @@ public class RegisterActivity extends AppCompatActivity {
 
             // Create a new map of values, where column names are the keys
             ContentValues values = new ContentValues();
-            values.put(CustomerDBContract.FeedEntry.COLUMN_NAME_FIRST_NAME, curCustomer.getFirstName());
-            values.put(CustomerDBContract.FeedEntry.COLUMN_NAME_LAST_NAME, curCustomer.getLastName());
-            values.put(CustomerDBContract.FeedEntry.COLUMN_NAME_EMAIL, curCustomer.getEmail());
             values.put(CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER, curCustomer.getCardNumber());
-            values.put(CustomerDBContract.FeedEntry.COLUMN_NAME_PASSWORD, curCustomer.getPassword());
-
+            values.put(CustomerDBContract.FeedEntry.COLUMN_NAME_BALANCE, 2);
 
 // Insert the new row, returning the primary key value of the new row
             Boolean error = false;
 
             try {
-                long newRowId = db.insertOrThrow(CustomerDBContract.FeedEntry.TABLE_NAME, null, values);
+                db.insertOrThrow(CustomerDBContract.FeedEntry.CARD_TABLE_NAME, null, values);
+            } catch (SQLiteConstraintException e) {
+                error = true;
+                // Sourced from http://stackoverflow.com/a/26097696
+                AlertDialog alertDialog = new AlertDialog.Builder(RegisterActivity.this).create();
+                alertDialog.setTitle("Card number already is associated with an account");
+                alertDialog.setMessage("A user with that card number already exists. Please try another card number.");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
+
+            // Create a new map of values, where column names are the keys
+            ContentValues values2 = new ContentValues();
+            values2.put(CustomerDBContract.FeedEntry.COLUMN_NAME_FIRST_NAME, curCustomer.getFirstName());
+            values2.put(CustomerDBContract.FeedEntry.COLUMN_NAME_LAST_NAME, curCustomer.getLastName());
+            values2.put(CustomerDBContract.FeedEntry.COLUMN_NAME_EMAIL, curCustomer.getEmail());
+            values2.put(CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER, curCustomer.getCardNumber());
+            values2.put(CustomerDBContract.FeedEntry.COLUMN_NAME_PASSWORD, curCustomer.getPassword());
+
+
+// Insert the new row, returning the primary key value of the new row
+            error = false;
+
+            try {
+                long newRowId = db.insertOrThrow(CustomerDBContract.FeedEntry.TABLE_NAME, null, values2);
                 Log.d("new row id is: ", Long.toString(newRowId));
                 curCustomer.setId(newRowId);
             } catch (SQLiteConstraintException e) {
@@ -105,6 +131,7 @@ public class RegisterActivity extends AppCompatActivity {
                 alertDialog.show();
             }
 
+
             if (!error) {
                 AlertDialog alertDialog = new AlertDialog.Builder(RegisterActivity.this).create();
                 alertDialog.setTitle("User Created");
@@ -112,8 +139,13 @@ public class RegisterActivity extends AppCompatActivity {
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
+                                Card card = new Card();
+                                card.setCardNumber(curCustomer.getCardNumber());
+                                card.setBalance(2);
+
                                 Intent goHomeWithCustomerIntent = new Intent(RegisterActivity.this, HomeScreenActivity.class);
                                 goHomeWithCustomerIntent.putExtra("curCustomer", curCustomer);
+                                goHomeWithCustomerIntent.putExtra("card", card);
                                 startActivity(goHomeWithCustomerIntent);
                                 dialog.dismiss();
                             }

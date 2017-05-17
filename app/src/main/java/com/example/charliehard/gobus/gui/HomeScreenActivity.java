@@ -10,11 +10,13 @@ import android.widget.TextView;
 
 import com.example.charliehard.gobus.R;
 import com.example.charliehard.gobus.domain.Customer;
+import com.example.charliehard.gobus.domain.Card;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
     private Customer curCustomer;
+    private Card card;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -47,9 +49,11 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Customer curCustomer = (Customer) intent.getSerializableExtra("curCustomer");
+        Card card = (Card) intent.getSerializableExtra("card");
+
         mTextMessage = (TextView) findViewById(R.id.message);
         if (curCustomer != null && mTextMessage != null) {
-            mTextMessage.setText("Hello, " + curCustomer.getFirstName());
+            mTextMessage.setText("Hello, " + curCustomer.getFirstName() + " Your balance is $" + card.getBalance());
         }
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

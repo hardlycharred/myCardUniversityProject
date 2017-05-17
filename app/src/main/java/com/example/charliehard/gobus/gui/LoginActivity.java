@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import com.example.charliehard.gobus.R;
 import com.example.charliehard.gobus.domain.Customer;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBContract;

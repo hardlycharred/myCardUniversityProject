@@ -10,12 +10,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class CustomerDBHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 5;
     public static final String DATABASE_NAME = "FeedReader.db";
     public static final String SQL_CREATE_CARD_ENTRIES =
             "CREATE TABLE " + CustomerDBContract.FeedEntry.CARD_TABLE_NAME + "(" +
                     CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER + " TEXT PRIMARY KEY," +
-                    CustomerDBContract.FeedEntry.COLUMN_NAME_BALANCE + " INTEGER);";
+                    CustomerDBContract.FeedEntry.COLUMN_NAME_BALANCE + " REAL);";
 
     public static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + CustomerDBContract.FeedEntry.TABLE_NAME + " (" +
@@ -30,11 +30,11 @@ public class CustomerDBHelper extends SQLiteOpenHelper {
 
     public static final String SQL_CREATE_TRANS_ENTRIES =
             "CREATE TABLE " + CustomerDBContract.FeedEntry.TRANS_TABLE_NAME + " (" +
-                    CustomerDBContract.FeedEntry.COLUMN_NAME_TRANS_ID + " STRING PRIMARY KEY," +
+                    CustomerDBContract.FeedEntry.COLUMN_NAME_TRANS_ID + " INTEGER PRIMARY KEY," +
                     CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER + " TEXT," +
-                    CustomerDBContract.FeedEntry.COLUMN_NAME_DATE + " DATE," +
-                    CustomerDBContract.FeedEntry.COLUMN_NAME_TIME + " TIME," +
-                    CustomerDBContract.FeedEntry.COLUMN_NAME_AMOUNT + " INTEGER," +
+                    CustomerDBContract.FeedEntry.COLUMN_NAME_DATE + " TEXT," +
+                    CustomerDBContract.FeedEntry.COLUMN_NAME_TIME + " TEXT," +
+                    CustomerDBContract.FeedEntry.COLUMN_NAME_AMOUNT + " REAL," +
                     "FOREIGN KEY(" + CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER +
                     ") REFERENCES " + CustomerDBContract.FeedEntry.CARD_TABLE_NAME +
                     "(" + CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER + "));";

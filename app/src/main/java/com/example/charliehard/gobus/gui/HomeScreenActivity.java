@@ -11,12 +11,16 @@ import android.widget.TextView;
 import com.example.charliehard.gobus.R;
 import com.example.charliehard.gobus.domain.Customer;
 import com.example.charliehard.gobus.domain.Card;
+import com.example.charliehard.gobus.domain.Transaction;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
     private Customer curCustomer;
     private Card card;
+    private Transaction trans1;
+    private Transaction trans2;
+    private Transaction trans3;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -50,10 +54,17 @@ public class HomeScreenActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Customer curCustomer = (Customer) intent.getSerializableExtra("curCustomer");
         Card card = (Card) intent.getSerializableExtra("card");
+        Transaction trans1 = (Transaction) intent.getSerializableExtra("trans1");
+        Transaction trans2 = (Transaction) intent.getSerializableExtra("trans2");
+        Transaction trans3 = (Transaction) intent.getSerializableExtra("trans3");
+
 
         mTextMessage = (TextView) findViewById(R.id.message);
         if (curCustomer != null && mTextMessage != null) {
             mTextMessage.setText("Hello, " + curCustomer.getFirstName() + " Your balance is $" + card.getBalance());
+            //mTextMessage.setText("Transaction1" + trans1.getDate() + " " + trans1.getTime() + " " + trans1.getAmount());
+            //mTextMessage.setText("Transaction2" + trans2.getDate() + " " + trans2.getTime() + " " + trans2.getAmount());
+            //mTextMessage.setText("Transaction3" + trans3.getDate() + " " + trans3.getTime() + " " + trans3.getAmount());
         }
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

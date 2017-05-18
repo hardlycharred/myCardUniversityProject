@@ -128,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
             // Retrieve column values from the retrieved cursor row(s)
             if (cursor.moveToNext()) {
                 card.setCardNumber(cursor.getString(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER)));
-                card.setBalance(cursor.getInt(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry.COLUMN_NAME_BALANCE)));
+                card.setBalance(cursor.getDouble(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry.COLUMN_NAME_BALANCE)));
             }
             cursor.close();
 

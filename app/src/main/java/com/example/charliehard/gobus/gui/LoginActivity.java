@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import com.example.charliehard.gobus.R;
 import com.example.charliehard.gobus.domain.Customer;
+import com.example.charliehard.gobus.domain.Card;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBContract;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBHelper;
 
@@ -111,6 +112,35 @@ public class LoginActivity extends AppCompatActivity {
             }
             cursor.close();
 
+            // Define a projection that specifies which columns from the database
+            // you will actually use after this query.
+            projection = new String[]{
+                    CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER,
+                    CustomerDBContract.FeedEntry.COLUMN_NAME_BALANCE
+            };
+
+            // Filter results - WHERE id is the current customer's ID
+            selection = CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER + " = ?";
+            selectionArgs = new String[]{curCustomer.getCardNumber().toString()};
+
+            cursor = db.query(
+                    CustomerDBContract.FeedEntry.CARD_TABLE_NAME,                     // The table to query
+                    projection,                               // The columns to return
+                    selection,                                // The columns for the WHERE clause
+                    selectionArgs,                            // The values for the WHERE clause
+                    null,                                     // don't group the rows
+                    null,                                     // don't filter by row groups
+                    null                                      // The sort order
+            );
+
+            final Card card = new Card();
+            // Retrieve column values from the retrieved cursor row(s)
+            if (cursor.moveToNext()) {
+                card.setCardNumber(cursor.getString(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER)));
+                card.setBalance(cursor.getDouble(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry.COLUMN_NAME_BALANCE)));
+            }
+            cursor.close();
+
             if (curCustomer.getFirstName() != null) {
                 AlertDialog alertDialog = new AlertDialog.Builder(LoginActivity.this).create();
                 alertDialog.setTitle("Logged In");
@@ -120,6 +150,7 @@ public class LoginActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent goHomeWithCustomerIntent = new Intent(LoginActivity.this, HomeScreenActivity.class);
                                 goHomeWithCustomerIntent.putExtra("curCustomer", curCustomer);
+                                goHomeWithCustomerIntent.putExtra("card", card);
                                 startActivity(goHomeWithCustomerIntent);
                                 dialog.dismiss();
                             }

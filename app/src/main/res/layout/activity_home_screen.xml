@@ -53,11 +53,12 @@
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
-        android:layout_height="24dp"
+        android:layout_height="60dp"
         android:layout_gravity="bottom"
         android:background="?android:attr/windowBackground"
         app:menu="@menu/navigation"
+        android:layout_marginStart="-175dp"
         android:layout_weight="0.03"
-        android:layout_marginStart="-175dp"/>
+        />
 
 </LinearLayout>

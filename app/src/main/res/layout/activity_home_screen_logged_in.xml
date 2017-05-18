@@ -14,18 +14,8 @@
         android:background="#AADCF1">
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="356dp"
-            android:layout_height="380dp"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="80dp"
-            android:text="Your balance is: "
-            android:textAlignment="center" />
-
-        <TextView
             android:id="@+id/textView3"
-            android:layout_width="356dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -35,6 +25,16 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="380dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="80dp"
+            android:text="Your balance is: "
+            android:textAlignment="center" />
+
 
     </FrameLayout>
 
@@ -42,7 +42,7 @@
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:layout_gravity="bottom"
         android:background="?android:attr/windowBackground"
         app:menu="@menu/navigation"

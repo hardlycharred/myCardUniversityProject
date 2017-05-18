@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import com.example.charliehard.gobus.R;
 import com.example.charliehard.gobus.domain.Customer;
 import com.example.charliehard.gobus.domain.Card;
@@ -39,6 +38,16 @@ public class LoginActivity extends AppCompatActivity {
                 customer.setEmail(emailEntry.getText().toString());
                 customer.setPassword(passwordEntry.getText().toString());
                 new FetchDBTask().execute(customer);
+            }
+        });
+
+
+        final Button signUpButton = (Button) findViewById(R.id.signUpButton);
+
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
     }

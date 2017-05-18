@@ -23,6 +23,9 @@ import com.example.charliehard.gobus.domain.Transaction;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBContract;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBHelper;
 
+import static android.R.attr.id;
+import static android.R.attr.password;
+
 public class RegisterActivity extends AppCompatActivity {
 
     SQLiteDatabase db;
@@ -55,6 +58,8 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    Intent intent = getIntent();
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -69,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
         protected Customer doInBackground(Customer... params) {
             customerDBHelper = new CustomerDBHelper(getApplicationContext());
             db = customerDBHelper.getWritableDatabase();
-            customerDBHelper.onUpgrade(db, 4, 5); // Clears the DB
+//            customerDBHelper.onUpgrade(db, 2, 3); // Clears the DB
             return params[0];
         }
 
@@ -250,7 +255,5 @@ public class RegisterActivity extends AppCompatActivity {
             }
             cursor.close();*/
         }
-
-
     }
 }

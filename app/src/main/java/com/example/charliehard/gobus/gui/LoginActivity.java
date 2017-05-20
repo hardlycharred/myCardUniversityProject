@@ -21,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
 
     SQLiteDatabase db;
     CustomerDBHelper customerDBHelper;
+    Boolean validationErrors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +35,20 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Customer customer = new Customer();
-                customer.setEmail(emailEntry.getText().toString());
-                customer.setPassword(passwordEntry.getText().toString());
-                new FetchDBTask().execute(customer);
+
+                validationErrors = false;
+
+                inputNotEmpty(emailEntry);
+                inputNotEmpty(passwordEntry);
+
+                if (validationErrors == true) {
+                    return;
+                } else {
+                    Customer customer = new Customer();
+                    customer.setEmail(emailEntry.getText().toString());
+                    customer.setPassword(passwordEntry.getText().toString());
+                    new FetchDBTask().execute(customer);
+                }
             }
         });
 
@@ -50,6 +61,13 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
+    }
+
+    public void inputNotEmpty(EditText inputView) {
+        if (inputView.getText().toString().length() == 0) {
+            inputView.setError(inputView.getHint() + " can't be empty");
+            validationErrors = true;
+        }
     }
 
     @Override

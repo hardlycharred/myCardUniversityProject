@@ -100,7 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(final Customer curCustomer) {
-//Card
+            //Card
             // Create a new map of values, where column names are the keys
             ContentValues values = new ContentValues();
             values.put(CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER, curCustomer.getCardNumber());
@@ -123,6 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         });
                 alertDialog.show();
+                return;
             }
 //Customer
             // Create a new map of values, where column names are the keys
@@ -154,6 +155,7 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         });
                 alertDialog.show();
+                return;
             }
 //3 Transactions
 

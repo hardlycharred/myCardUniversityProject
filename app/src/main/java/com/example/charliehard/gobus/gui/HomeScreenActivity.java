@@ -62,7 +62,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         if (curCustomer != null && mTextMessage != null) {
             setContentView(R.layout.activity_home_screen_logged_in);
             mTextMessage = (TextView) findViewById(R.id.textView3);
-            mTextMessage.setText("Hello, " + curCustomer.getFirstName() + " Your balance is $" + card.getBalance());
+            mTextMessage.setText("Hello, " + curCustomer.getFirstName() );
             mTextMessage = (TextView) findViewById(R.id.textView5);
             mTextMessage.setText("$" + card.getBalance() + " ");
             //mTextMessage.setText("Transaction1" + trans1.getDate() + " " + trans1.getTime() + " " + trans1.getAmount());

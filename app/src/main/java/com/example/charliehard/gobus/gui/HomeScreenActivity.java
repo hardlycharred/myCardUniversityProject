@@ -67,6 +67,10 @@ public class HomeScreenActivity extends AppCompatActivity {
             mTextMessage.setText("Hello, " + curCustomer.getFirstName() );
             mTextMessage = (TextView) findViewById(R.id.textView5);
             mTextMessage.setText("$" + card.getBalance() + " ");
+            mTextMessage = (TextView) findViewById(R.id.transactions);
+            mTextMessage.setText(trans1.getDate() + "\t"+ "\t" + "\t"+ "\t"+ "\t" +trans1.getTime() + "\t"+ "\t" + "\t"+ "\t"+ "\t" +trans1.getCardNumber() + "\t"+ "\t"+ "\t"+ "\t"+ "\t" + "$" + trans1.getAmount()+  "\n"
+                    + trans2.getDate() + "\t"+ "\t" + "\t"+ "\t"+ "\t"  + trans2.getTime() + "\t"+ "\t" + "\t"+ "\t"+ "\t" + trans2.getCardNumber()+ "\t"+ "\t" + "\t"+ "\t"+ "\t" + "$" + trans2.getAmount() + "\n"
+                   +trans3.getDate() + "\t"+ "\t" + "\t"+ "\t"+ "\t"  + trans3.getTime() + "\t"+ "\t" + "\t"+ "\t"+ "\t" + trans3.getCardNumber() +"\t"+ "\t" + "\t"+ "\t"+ "\t"  + "$" +trans3.getAmount());
             Button topup = (Button) findViewById(R.id.button2);
             topup.setOnClickListener(new View.OnClickListener() {
                 @Override

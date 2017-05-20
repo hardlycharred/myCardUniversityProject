@@ -46,7 +46,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:cropToPadding="false"
-            app:srcCompat="@drawable/imageedit_3_4117824178" />
+            app:srcCompat="@drawable/gobus_logo_round_large" />
 
         <TextView
             android:id="@+id/textView5"
@@ -83,7 +83,7 @@
         android:background="?android:attr/windowBackground"
         app:menu="@menu/navigation"
         android:layout_weight="0.03"
-        android:backgroundTint="#c6fff4"
+        android:backgroundTint="#ebebeb"
         />
 
 

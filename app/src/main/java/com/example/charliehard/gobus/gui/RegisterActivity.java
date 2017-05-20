@@ -45,6 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 validationErrors = false;
 
+                // Regex sourced from here: http://regexlib.com/REDetails.aspx?regexp_id=88&AspxAutoDetectCookieSupport=1
                 if (!emailEntry.getText().toString().matches("^([\\w\\-\\.]+)@((\\[([0-9]{1,3}\\.){3}[0-9]{1,3}\\])|(([\\w\\-]+\\.)+)([a-zA-Z]{2,4}))$")) {
                     emailEntry.setError("Email not valid");
                     validationErrors = true;

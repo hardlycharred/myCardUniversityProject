@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -14,22 +13,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.charliehard.gobus.R;
-import com.example.charliehard.gobus.domain.Customer;
 import com.example.charliehard.gobus.domain.Card;
+import com.example.charliehard.gobus.domain.Customer;
 import com.example.charliehard.gobus.domain.Transaction;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBContract;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBHelper;
-
-import static android.R.attr.id;
-import static android.R.attr.password;
 
 public class RegisterActivity extends AppCompatActivity {
 
     SQLiteDatabase db;
     CustomerDBHelper customerDBHelper;
+    Boolean validationErrors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,19 +42,43 @@ public class RegisterActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Customer customer = new Customer();
-                customer.setFirstName(firstNameEntry.getText().toString());
-                customer.setLastName(lastNameEntry.getText().toString());
-                customer.setEmail(emailEntry.getText().toString());
-                customer.setCardNumber(cardNumEntry.getText().toString());
-                customer.setPassword(passwordEntry.getText().toString());
-                Log.d("The customer is:", customer.toString());
-                new FetchDBTask().execute(customer);
+
+                validationErrors = false;
+
+                if (!emailEntry.getText().toString().matches("^([\\w\\-\\.]+)@((\\[([0-9]{1,3}\\.){3}[0-9]{1,3}\\])|(([\\w\\-]+\\.)+)([a-zA-Z]{2,4}))$")) {
+                    emailEntry.setError("Email not valid");
+                    validationErrors = true;
+                }
+
+                inputNotEmpty(firstNameEntry);
+                inputNotEmpty(lastNameEntry);
+                inputNotEmpty(emailEntry);
+                inputNotEmpty(cardNumEntry);
+                inputNotEmpty(passwordEntry);
+
+
+                if (validationErrors == true) {
+                    return;
+                } else {
+                    Customer customer = new Customer();
+                    customer.setFirstName(firstNameEntry.getText().toString());
+                    customer.setLastName(lastNameEntry.getText().toString());
+                    customer.setEmail(emailEntry.getText().toString());
+                    customer.setCardNumber(cardNumEntry.getText().toString());
+                    customer.setPassword(passwordEntry.getText().toString());
+                    Log.d("The customer is:", customer.toString());
+                    new FetchDBTask().execute(customer);
+                }
             }
         });
     }
 
-    Intent intent = getIntent();
+    public void inputNotEmpty(EditText inputView) {
+        if (inputView.getText().toString().length() == 0) {
+            inputView.setError(inputView.getHint() + " can't be empty");
+            validationErrors = true;
+        }
+    }
 
     @Override
     protected void onDestroy() {
@@ -92,7 +112,6 @@ public class RegisterActivity extends AppCompatActivity {
             try {
                 db.insertOrThrow(CustomerDBContract.FeedEntry.CARD_TABLE_NAME, null, values);
             } catch (SQLiteConstraintException e) {
-                error = true;
                 // Sourced from http://stackoverflow.com/a/26097696
                 AlertDialog alertDialog = new AlertDialog.Builder(RegisterActivity.this).create();
                 alertDialog.setTitle("Card number already is associated with an account");

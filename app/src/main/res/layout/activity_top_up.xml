@@ -35,7 +35,7 @@
             android:textSize="25sp" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editAmount"
             style="@style/editText_style_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
             android:textAlignment="center" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/submit"
             style="@style/button_style_2"
             android:layout_width="220dp"
             android:layout_height="wrap_content"

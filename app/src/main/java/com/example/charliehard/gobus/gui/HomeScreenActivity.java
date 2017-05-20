@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.charliehard.gobus.R;
@@ -51,8 +53,8 @@ public class HomeScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         Intent intent = getIntent();
-        Customer curCustomer = (Customer) intent.getSerializableExtra("curCustomer");
-        Card card = (Card) intent.getSerializableExtra("card");
+        final Customer curCustomer = (Customer) intent.getSerializableExtra("curCustomer");
+        final Card card = (Card) intent.getSerializableExtra("card");
         Transaction trans1 = (Transaction) intent.getSerializableExtra("trans1");
         Transaction trans2 = (Transaction) intent.getSerializableExtra("trans2");
         Transaction trans3 = (Transaction) intent.getSerializableExtra("trans3");
@@ -65,6 +67,16 @@ public class HomeScreenActivity extends AppCompatActivity {
             mTextMessage.setText("Hello, " + curCustomer.getFirstName() );
             mTextMessage = (TextView) findViewById(R.id.textView5);
             mTextMessage.setText("$" + card.getBalance() + " ");
+            Button topup = (Button) findViewById(R.id.button2);
+            topup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent topUpIntent = new Intent(HomeScreenActivity.this, TopUpActivity.class);
+                    topUpIntent.putExtra("card", card);
+                    topUpIntent.putExtra("curCustomer", curCustomer);
+                    startActivity(topUpIntent);
+                }
+            });
             //mTextMessage.setText("Transaction1" + trans1.getDate() + " " + trans1.getTime() + " " + trans1.getAmount());
             //mTextMessage.setText("Transaction2" + trans2.getDate() + " " + trans2.getTime() + " " + trans2.getAmount());
             //mTextMessage.setText("Transaction3" + trans3.getDate() + " " + trans3.getTime() + " " + trans3.getAmount());

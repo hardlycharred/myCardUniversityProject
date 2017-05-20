@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.charliehard.gobus.R;
 import com.example.charliehard.gobus.domain.Card;
@@ -33,8 +34,10 @@ public class TopUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_up);
         Intent intent = getIntent();
-        final Customer curCustomer = (Customer) intent.getSerializableExtra("curCustomer");
         final Card card = (Card) intent.getSerializableExtra("card");
+
+        TextView curBalance = (TextView) findViewById(R.id.textView6);
+        curBalance.setText("$" + card.getBalance().toString());
 
         final EditText amountEntry = (EditText) findViewById(R.id.editAmount);
         final EditText cardEntry = (EditText) findViewById(R.id.editText3);
@@ -48,7 +51,7 @@ public class TopUpActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 validationErrors = false;
-
+                inputNotEmpty(amountEntry);
                 inputNotEmpty(cardEntry);
                 inputNotEmpty(cardNameEntry);
                 inputNotEmpty(expiryEntry);

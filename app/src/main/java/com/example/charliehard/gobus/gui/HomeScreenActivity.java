@@ -73,7 +73,6 @@ public class HomeScreenActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent topUpIntent = new Intent(HomeScreenActivity.this, TopUpActivity.class);
                     topUpIntent.putExtra("card", card);
-                    topUpIntent.putExtra("curCustomer", curCustomer);
                     startActivity(topUpIntent);
                 }
             });

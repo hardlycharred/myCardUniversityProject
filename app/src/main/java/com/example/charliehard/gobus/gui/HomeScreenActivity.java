@@ -12,9 +12,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.charliehard.gobus.R;
-import com.example.charliehard.gobus.domain.Customer;
 import com.example.charliehard.gobus.domain.Card;
+import com.example.charliehard.gobus.domain.Customer;
 import com.example.charliehard.gobus.domain.Transaction;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
 
@@ -95,8 +96,11 @@ public class HomeScreenActivity extends AppCompatActivity {
             //setContentView(R.layout.activity_home_screen_logged_in); uncomment to display alternative home page when logged in
         }
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationViewEx navigation = (BottomNavigationViewEx) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.enableAnimation(false);
+        navigation.enableItemShiftingMode(false);
+        navigation.enableShiftingMode(false);
     }
 
 }

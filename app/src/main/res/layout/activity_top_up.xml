@@ -5,138 +5,147 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <FrameLayout
-        android:id="@+id/content1"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/colorPrimaryDark">
+        android:layout_weight="1">
 
-
-        <TextView
-            android:id="@+id/textView6"
-
+        <FrameLayout
+            android:id="@+id/content1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
-            android:text="TextView"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-            android:textColor="@android:color/white"
-            android:textSize="50sp" />
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark">
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="110dp"
-            android:text="Your balance is: "
-            android:textColor="@android:color/white"
-            android:textSize="25sp" />
 
-        <EditText
-            android:id="@+id/editAmount"
-            android:inputType="number"
-            style="@style/editText_style_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="260dp"
-            android:ems="10"
+            <TextView
+                android:id="@+id/textView6"
 
-            android:text="$"
-            android:textAlignment="center"
-            android:textColor="@android:color/black" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="140dp"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                android:textColor="@android:color/white"
+                android:textSize="50sp" />
 
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="220dp"
-            android:text="Top Up Amount: "
-            android:textColor="@android:color/white"
-            android:textSize="30sp" />
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="110dp"
+                android:text="Your balance is: "
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="330dp"
-            android:text="Credit Card Details:"
-            android:textColor="@android:color/white"
-            android:textSize="30sp" />
+            <EditText
+                android:id="@+id/editAmount"
+                style="@style/editText_style_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="260dp"
+                android:ems="10"
+                android:hint="$"
 
-        <EditText
-        android:id="@+id/editText3"
-        style="@style/editText_style_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="370dp"
-        android:ems="10"
-        android:inputType="number"
-        android:text="Card Number"
-        android:textAlignment="center" />
+                android:inputType="number"
+                android:textAlignment="center"
+                android:textColor="@android:color/black" />
 
-        <EditText
-        android:id="@+id/editText4"
-        style="@style/editText_style_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="425dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name on Card"
-        android:textAlignment="center" />
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="220dp"
+                android:text="Top Up Amount:"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="30sp" />
 
-        <EditText
-            android:id="@+id/editText5"
-            style="@style/editText_style_2"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="212dp"
-            android:layout_marginTop="480dp"
-            android:ems="10"
-            android:inputType="number"
-            android:text="CCV"
-            android:textAlignment="center" />
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="330dp"
+                android:text="Credit Card Details"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="30sp" />
 
-        <EditText
-            android:id="@+id/editText7"
-            style="@style/editText_style_2"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="480dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Expiry"
-            android:textAlignment="center" />
+            <EditText
+                android:id="@+id/editText3"
+                style="@style/editText_style_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="370dp"
+                android:ems="10"
+                android:hint="Card Number"
+                android:inputType="number"
+                android:textAlignment="center" />
 
-        <Button
-            android:id="@+id/submit"
-            style="@style/button_style_2"
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="540dp"
-            android:text="Submit"
-            android:textSize="25sp" />
+            <EditText
+                android:id="@+id/editText4"
+                style="@style/editText_style_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="425dp"
+                android:ems="10"
+                android:hint="Name on Card"
+                android:inputType="textPersonName"
+                android:textAlignment="center" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:cropToPadding="false"
-            app:srcCompat="@drawable/imageedit_3_4117824178" />
+            <EditText
+                android:id="@+id/editText5"
+                style="@style/editText_style_2"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="212dp"
+                android:layout_marginTop="480dp"
+                android:ems="10"
+                android:hint="CCV"
+                android:inputType="number"
+                android:textAlignment="center" />
 
-    </FrameLayout>
+            <Button
+                android:id="@+id/submit"
+                style="@style/button_style_2"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="540dp"
+                android:text="Submit"
+                android:textSize="25sp" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:cropToPadding="false"
+                app:srcCompat="@drawable/imageedit_3_4117824178" />
+
+            <EditText
+                android:id="@+id/editText7"
+                style="@style/editText_style_2"
+                android:layout_width="111dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="480dp"
+                android:ems="10"
+                android:hint="Expiry"
+                android:inputType="textPersonName"
+                android:textAlignment="center" />
+
+        </FrameLayout>
+    </ScrollView>
 
 
 </LinearLayout>

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,8 @@ import com.example.charliehard.gobus.R;
 import com.example.charliehard.gobus.domain.Customer;
 import com.example.charliehard.gobus.domain.Card;
 import com.example.charliehard.gobus.domain.Transaction;
+
+import java.util.ArrayList;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
@@ -55,9 +58,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final Customer curCustomer = (Customer) intent.getSerializableExtra("curCustomer");
         final Card card = (Card) intent.getSerializableExtra("card");
-        Transaction trans1 = (Transaction) intent.getSerializableExtra("trans1");
-        Transaction trans2 = (Transaction) intent.getSerializableExtra("trans2");
-        Transaction trans3 = (Transaction) intent.getSerializableExtra("trans3");
+        ArrayList<Transaction> allTransactions = (ArrayList) intent.getSerializableExtra("allTransactions");
 
 
         mTextMessage = (TextView) findViewById(R.id.message);
@@ -68,10 +69,18 @@ public class HomeScreenActivity extends AppCompatActivity {
             mTextMessage = (TextView) findViewById(R.id.textView5);
             mTextMessage.setText("$" + card.getBalance() + " ");
             mTextMessage = (TextView) findViewById(R.id.transactions);
-            mTextMessage.setText(trans1.getDate() + "\t"+ "\t" + "\t"+ "\t"+ "\t" +trans1.getTime() + "\t"+ "\t" + "\t"+ "\t"+ "\t" +trans1.getCardNumber() + "\t"+ "\t"+ "\t"+ "\t"+ "\t" + "$" + trans1.getAmount()+  "\n"
-                    + trans2.getDate() + "\t"+ "\t" + "\t"+ "\t"+ "\t"  + trans2.getTime() + "\t"+ "\t" + "\t"+ "\t"+ "\t" + trans2.getCardNumber()+ "\t"+ "\t" + "\t"+ "\t"+ "\t" + "$" + trans2.getAmount() + "\n"
-                   +trans3.getDate() + "\t"+ "\t" + "\t"+ "\t"+ "\t"  + trans3.getTime() + "\t"+ "\t" + "\t"+ "\t"+ "\t" + trans3.getCardNumber() +"\t"+ "\t" + "\t"+ "\t"+ "\t"  + "$" +trans3.getAmount());
-            Button topup = (Button) findViewById(R.id.button2);
+            String tabledTransactions = "";
+            if (allTransactions != null) {
+                for (Transaction t : allTransactions) {
+                    Log.d("Trans parsed", t.getId().toString());
+
+                    tabledTransactions += t.getDate() + "\t" + "\t" + "\t" + "\t" + "\t" + t.getTime() + "\t" + "\t" + "\t" + "\t" + "\t" + "$" + t.getAmount() + "\n";
+//                        + trans2.getDate() + "\t" + "\t" + "\t" + "\t" + "\t" + trans2.getTime() + "\t" + "\t" + "\t" + "\t" + "\t" + trans2.getCardNumber() + "\t" + "\t" + "\t" + "\t" + "\t" + "$" + trans2.getAmount() + "\n"
+//                        + trans3.getDate() + "\t" + "\t" + "\t" + "\t" + "\t" + trans3.getTime() + "\t" + "\t" + "\t" + "\t" + "\t" + trans3.getCardNumber() + "\t" + "\t" + "\t" + "\t" + "\t" + "$" + trans3.getAmount());
+                }
+                mTextMessage.setText(tabledTransactions);
+            }
+                Button topup = (Button) findViewById(R.id.button2);
             topup.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

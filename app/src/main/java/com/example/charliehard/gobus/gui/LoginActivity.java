@@ -11,18 +11,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import com.example.charliehard.gobus.R;
 import com.example.charliehard.gobus.domain.Card;
 import com.example.charliehard.gobus.domain.Customer;
+import com.example.charliehard.gobus.domain.Transaction;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBContract;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBHelper;
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
     SQLiteDatabase db;
     CustomerDBHelper customerDBHelper;
     Boolean validationErrors;
+    ArrayList<Transaction> allTransactions = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +122,6 @@ public class LoginActivity extends AppCompatActivity {
                     null                                      // The sort order
             );
 
-
             // Retrieve column values from the retrieved cursor row(s)
             if (cursor.moveToNext()) {
                 curCustomer.setFirstName(cursor.getString(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry.COLUMN_NAME_FIRST_NAME)));
@@ -157,6 +159,33 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 cursor.close();
 
+                projection = new String[]{
+                        CustomerDBContract.FeedEntry.COLUMN_NAME_DATE,
+                        CustomerDBContract.FeedEntry.COLUMN_NAME_TIME,
+                        CustomerDBContract.FeedEntry.COLUMN_NAME_AMOUNT,
+                        CustomerDBContract.FeedEntry.COLUMN_NAME_TRANS_ID,
+                };
+
+                cursor = db.query(
+                        CustomerDBContract.FeedEntry.TRANS_TABLE_NAME,                     // The table to query
+                        projection,                               // The columns to return
+                        selection,                                // The columns for the WHERE clause
+                        selectionArgs,                            // The values for the WHERE clause
+                        null,                                     // don't group the rows
+                        null,                                     // don't filter by row groups
+                        null                                      // The sort order
+                );
+
+
+                while (cursor.moveToNext()) { //Charlie
+                    Transaction t = new Transaction();
+                    t.setId(cursor.getLong(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry.COLUMN_NAME_TRANS_ID)));
+                    t.setDate(cursor.getString(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry.COLUMN_NAME_DATE)));
+                    t.setTime(cursor.getString(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry.COLUMN_NAME_TIME)));
+                    t.setAmount(cursor.getDouble(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry.COLUMN_NAME_AMOUNT)));
+                    allTransactions.add(t);
+                }
+
                 AlertDialog alertDialog = new AlertDialog.Builder(LoginActivity.this).create();
                 alertDialog.setTitle("Logged In");
                 alertDialog.setMessage("Thanks for logging in, " + curCustomer.getFirstName() + ". Click OK to return to the main screen.");
@@ -166,6 +195,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Intent goHomeWithCustomerIntent = new Intent(LoginActivity.this, HomeScreenActivity.class);
                                 goHomeWithCustomerIntent.putExtra("curCustomer", curCustomer);
                                 goHomeWithCustomerIntent.putExtra("card", card);
+                                goHomeWithCustomerIntent.putExtra("allTransactions", allTransactions);
                                 startActivity(goHomeWithCustomerIntent);
                                 dialog.dismiss();
                             }

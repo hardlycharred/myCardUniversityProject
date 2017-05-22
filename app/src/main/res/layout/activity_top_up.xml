@@ -104,9 +104,9 @@
             <EditText
                 android:id="@+id/editText5"
                 style="@style/editText_style_2"
-                android:layout_width="70dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="212dp"
+                android:layout_marginLeft="210dp"
                 android:layout_marginTop="480dp"
                 android:ems="10"
                 android:hint="CCV"
@@ -135,7 +135,7 @@
             <EditText
                 android:id="@+id/editText7"
                 style="@style/editText_style_2"
-                android:layout_width="111dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp"
                 android:layout_marginTop="480dp"

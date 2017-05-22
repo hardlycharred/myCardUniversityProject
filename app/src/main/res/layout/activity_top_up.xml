@@ -37,15 +37,15 @@
 
         <EditText
             android:id="@+id/editAmount"
-            android:inputType="number"
             style="@style/editText_style_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="260dp"
             android:ems="10"
+            android:hint="$"
 
-            android:text="$"
+            android:inputType="number"
             android:textAlignment="center"
             android:textColor="@android:color/black" />
 
@@ -70,28 +70,28 @@
             android:textSize="30sp" />
 
         <EditText
-        android:id="@+id/editText3"
-        style="@style/editText_style_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="370dp"
-        android:ems="10"
-        android:inputType="number"
-        android:text="Card Number"
-        android:textAlignment="center" />
+            android:id="@+id/editText3"
+            style="@style/editText_style_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="370dp"
+            android:ems="10"
+            android:hint="Card Number"
+            android:inputType="number"
+            android:textAlignment="center" />
 
         <EditText
-        android:id="@+id/editText4"
-        style="@style/editText_style_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="425dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name on Card"
-        android:textAlignment="center" />
+            android:id="@+id/editText4"
+            style="@style/editText_style_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="425dp"
+            android:ems="10"
+            android:hint="Name on Card"
+            android:inputType="textPersonName"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/editText5"
@@ -101,8 +101,8 @@
             android:layout_marginLeft="212dp"
             android:layout_marginTop="480dp"
             android:ems="10"
+            android:hint="CCV"
             android:inputType="number"
-            android:text="CCV"
             android:textAlignment="center" />
 
         <EditText
@@ -113,8 +113,8 @@
             android:layout_marginLeft="100dp"
             android:layout_marginTop="480dp"
             android:ems="10"
+            android:hint="Expiry"
             android:inputType="textPersonName"
-            android:text="Expiry"
             android:textAlignment="center" />
 
         <Button

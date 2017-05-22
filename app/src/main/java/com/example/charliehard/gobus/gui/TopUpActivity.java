@@ -5,12 +5,10 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +20,8 @@ import com.example.charliehard.gobus.domain.Customer;
 import com.example.charliehard.gobus.domain.Transaction;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBContract;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBHelper;
+
+import java.util.ArrayList;
 
 public class TopUpActivity extends AppCompatActivity {
 
@@ -144,7 +144,50 @@ public class TopUpActivity extends AppCompatActivity {
                 curCustomer.setId(cursor.getLong(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry.ROWID)));
             }
             cursor.close();
-            Log.d("The customer is:", curCustomer.toString());
+
+            //3 Transactions
+
+            // Create a new map of values, where column names are the keys
+            ContentValues values3 = new ContentValues();
+            values3.put(CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER, curCustomer.getCardNumber());
+            values3.put(CustomerDBContract.FeedEntry.COLUMN_NAME_DATE, "2017-05-14");
+            values3.put(CustomerDBContract.FeedEntry.COLUMN_NAME_TIME, "12:31");
+            values3.put(CustomerDBContract.FeedEntry.COLUMN_NAME_AMOUNT, 2.24);
+            long newRowId2 = db.insertOrThrow(CustomerDBContract.FeedEntry.TRANS_TABLE_NAME, null, values3);
+            final Transaction trans1 = new Transaction();
+            trans1.setId(newRowId2);
+            trans1.setCardNumber(curCustomer.getCardNumber());
+            trans1.setDate("2017-05-14");
+            trans1.setTime("12:31");
+            trans1.setAmount(2.24);
+
+            // Create a new map of values, where column names are the keys
+            ContentValues values4 = new ContentValues();
+            values4.put(CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER, curCustomer.getCardNumber());
+            values4.put(CustomerDBContract.FeedEntry.COLUMN_NAME_DATE, "2017-05-15");
+            values4.put(CustomerDBContract.FeedEntry.COLUMN_NAME_TIME, "07.45");
+            values4.put(CustomerDBContract.FeedEntry.COLUMN_NAME_AMOUNT, 1.56);
+            long newRowId3 = db.insertOrThrow(CustomerDBContract.FeedEntry.TRANS_TABLE_NAME, null, values4);
+            final Transaction trans2 = new Transaction();
+            trans2.setId(newRowId2);
+            trans2.setCardNumber(curCustomer.getCardNumber());
+            trans2.setDate("2017-05-15");
+            trans2.setTime("07.45");
+            trans2.setAmount(1.56);
+
+            // Create a new map of values, where column names are the keys
+            ContentValues values5 = new ContentValues();
+            values5.put(CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER, curCustomer.getCardNumber());
+            values5.put(CustomerDBContract.FeedEntry.COLUMN_NAME_DATE, "2017-05-15");
+            values5.put(CustomerDBContract.FeedEntry.COLUMN_NAME_TIME, "17.15");
+            values5.put(CustomerDBContract.FeedEntry.COLUMN_NAME_AMOUNT, 2.10);
+            long newRowId4 = db.insertOrThrow(CustomerDBContract.FeedEntry.TRANS_TABLE_NAME, null, values5);
+            final Transaction trans3 = new Transaction();
+            trans3.setId(newRowId2);
+            trans3.setCardNumber(curCustomer.getCardNumber());
+            trans3.setDate("2017-05-15");
+            trans3.setTime("17.15");
+            trans3.setAmount(2.10);
 
             AlertDialog alertDialog = new AlertDialog.Builder(TopUpActivity.this).create();
             alertDialog.setTitle("Top Up Successful");
@@ -155,6 +198,11 @@ public class TopUpActivity extends AppCompatActivity {
                                 Intent goHomeWithCustomerIntent = new Intent(TopUpActivity.this, HomeScreenActivity.class);
                                 goHomeWithCustomerIntent.putExtra("curCustomer", curCustomer);
                                 goHomeWithCustomerIntent.putExtra("card", card);
+                                ArrayList<Transaction> allTransactions = new ArrayList<>();
+                                allTransactions.add(trans1);
+                                allTransactions.add(trans2);
+                                allTransactions.add(trans3);
+                                goHomeWithCustomerIntent.putExtra("allTransactions", allTransactions);
                                 startActivity(goHomeWithCustomerIntent);
                                 dialog.dismiss();
                             }

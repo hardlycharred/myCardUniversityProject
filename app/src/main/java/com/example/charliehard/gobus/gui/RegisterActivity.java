@@ -21,6 +21,8 @@ import com.example.charliehard.gobus.domain.Transaction;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBContract;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBHelper;
 
+import java.util.ArrayList;
+
 public class RegisterActivity extends AppCompatActivity {
 
     SQLiteDatabase db;
@@ -212,70 +214,20 @@ public class RegisterActivity extends AppCompatActivity {
                                 Card card = new Card();
                                 card.setCardNumber(curCustomer.getCardNumber());
                                 card.setBalance(4.32);
-
                                 Intent goHomeWithCustomerIntent = new Intent(RegisterActivity.this, HomeScreenActivity.class);
                                 goHomeWithCustomerIntent.putExtra("curCustomer", curCustomer);
                                 goHomeWithCustomerIntent.putExtra("card", card);
-                                goHomeWithCustomerIntent.putExtra("trans1", trans1);
-                                goHomeWithCustomerIntent.putExtra("trans2", trans2);
-                                goHomeWithCustomerIntent.putExtra("trans3", trans3);
+                                ArrayList<Transaction> allTransactions = new ArrayList<>();
+                                allTransactions.add(trans1);
+                                allTransactions.add(trans2);
+                                allTransactions.add(trans3);
+                                goHomeWithCustomerIntent.putExtra("allTransactions", allTransactions);
                                 startActivity(goHomeWithCustomerIntent);
                                 dialog.dismiss();
                             }
                         });
                 alertDialog.show();
             }
-
-/*            //             All of the code below is for selecting data that was just placed in the DB
-            //             This was useful for testing and may be useful in the future, so it remains here for now.
-
-            SQLiteDatabase db = customerDBHelper.getReadableDatabase();
-
-            // Define a projection that specifies which columns from the database
-            // you will actually use after this query.
-            String[] projection = {
-                    CustomerDBContract.FeedEntry.ROWID,
-                    CustomerDBContract.FeedEntry.COLUMN_NAME_FIRST_NAME,
-                    CustomerDBContract.FeedEntry.COLUMN_NAME_LAST_NAME,
-                    CustomerDBContract.FeedEntry.COLUMN_NAME_EMAIL,
-                    CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER,
-                    CustomerDBContract.FeedEntry.COLUMN_NAME_PASSWORD
-            };
-
-            // Filter results - WHERE id is the current customer's ID
-            String selection = CustomerDBContract.FeedEntry.COLUMN_NAME_EMAIL + " = ?";
-            String[] selectionArgs = {curCustomer.getEmail().toString()};
-
-            Cursor cursor = db.query(
-                    CustomerDBContract.FeedEntry.TABLE_NAME,                     // The table to query
-                    projection,                               // The columns to return
-                    selection,                                // The columns for the WHERE clause
-                    selectionArgs,                            // The values for the WHERE clause
-                    null,                                     // don't group the rows
-                    null,                                     // don't filter by row groups
-                    null                                      // The sort order
-            );
-
-            TextView firstName = (TextView) findViewById(R.id.firstName);
-            TextView lastName = (TextView) findViewById(R.id.lastName);
-            TextView email = (TextView) findViewById(R.id.email);
-            TextView cardNum = (TextView) findViewById(R.id.cardNum);
-            TextView password = (TextView) findViewById(R.id.password);
-
-
-            TextView id = (TextView) findViewById(R.id.id);
-
-
-            // Retrieve column values from the retrieved cursor row(s)
-            if (cursor.moveToNext()) {
-                firstName.setText(cursor.getString(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry.COLUMN_NAME_FIRST_NAME)));
-                lastName.setText(cursor.getString(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry.COLUMN_NAME_LAST_NAME)));
-                email.setText(cursor.getString(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry.COLUMN_NAME_EMAIL)));
-                cardNum.setText(cursor.getString(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER)));
-                password.setText(cursor.getString(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry.COLUMN_NAME_PASSWORD)));
-                id.setText(cursor.getString(cursor.getColumnIndexOrThrow(CustomerDBContract.FeedEntry.ROWID)));
-            }
-            cursor.close();*/
         }
     }
 }

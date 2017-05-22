@@ -8,8 +8,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.05">
+        android:layout_height="461dp">
 
         <FrameLayout
             android:id="@+id/content"

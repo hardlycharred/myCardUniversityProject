@@ -22,6 +22,8 @@ import com.example.charliehard.gobus.domain.Transaction;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBContract;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBHelper;
 
+import java.text.DecimalFormat;
+
 public class TopUpActivity extends AppCompatActivity {
 
     SQLiteDatabase db;
@@ -37,7 +39,9 @@ public class TopUpActivity extends AppCompatActivity {
         final Card card = (Card) intent.getSerializableExtra("card");
 
         TextView curBalance = (TextView) findViewById(R.id.textView6);
-        curBalance.setText("$" + card.getBalance().toString());
+        DecimalFormat fmt = new DecimalFormat("####.00");
+        String formattedBalance = fmt.format(card.getBalance());
+        curBalance.setText("$" + formattedBalance);
 
         amountEntry = (EditText) findViewById(R.id.editAmount);
         final EditText cardEntry = (EditText) findViewById(R.id.editText3);

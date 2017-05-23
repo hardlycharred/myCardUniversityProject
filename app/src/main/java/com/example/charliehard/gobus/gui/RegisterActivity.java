@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -70,7 +69,6 @@ public class RegisterActivity extends AppCompatActivity {
                     customer.setEmail(emailEntry.getText().toString());
                     customer.setCardNumber(cardNumEntry.getText().toString());
                     customer.setPassword(passwordEntry.getText().toString());
-                    Log.d("The customer is:", customer.toString());
                     new FetchDBTask().execute(customer);
                 }
             }
@@ -144,7 +142,6 @@ public class RegisterActivity extends AppCompatActivity {
 
             try {
                 long newRowId = db.insertOrThrow(CustomerDBContract.FeedEntry.TABLE_NAME, null, values2);
-                Log.d("new row id is: ", Long.toString(newRowId));
                 curCustomer.setId(newRowId);
             } catch (SQLiteConstraintException e) {
                 error = true;

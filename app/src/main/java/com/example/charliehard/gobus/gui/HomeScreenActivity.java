@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +17,7 @@ import com.example.charliehard.gobus.domain.Customer;
 import com.example.charliehard.gobus.domain.Transaction;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class HomeScreenActivity extends AppCompatActivity {
@@ -55,10 +55,12 @@ public class HomeScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+
 //        Intent intent = getIntent();
         curCustomer = new GoBusDAO().getCustomer();
         card = new GoBusDAO().getCard();
         allTransactions = new GoBusDAO().getTransactions();
+        DecimalFormat fmt = new DecimalFormat("####.00");
 
 //        final Customer curCustomer = (Customer) intent.getSerializableExtra("curCustomer");
 //        final Card card = (Card) intent.getSerializableExtra("card");
@@ -70,13 +72,12 @@ public class HomeScreenActivity extends AppCompatActivity {
             mTextMessage = (TextView) findViewById(R.id.textView3);
             mTextMessage.setText("Hello, " + curCustomer.getFirstName() );
             mTextMessage = (TextView) findViewById(R.id.textView5);
-            mTextMessage.setText("$" + card.getBalance() + " ");
+            String roundedBal = fmt.format(card.getBalance());
+            mTextMessage.setText("$" + roundedBal);
             mTextMessage = (TextView) findViewById(R.id.transactions);
             String tabledTransactions = "";
             if (allTransactions != null) {
                 for (Transaction t : allTransactions) {
-                    Log.d("Trans parsed", t.getId().toString());
-
                     tabledTransactions += t.getDate() + "\t" + "\t" + "\t" + "\t" + "\t" + t.getTime() + "\t" + "\t" + "\t" + "\t" + "\t" + "$" + t.getAmount() + "\n";
 //                        + trans2.getDate() + "\t" + "\t" + "\t" + "\t" + "\t" + trans2.getTime() + "\t" + "\t" + "\t" + "\t" + "\t" + trans2.getCardNumber() + "\t" + "\t" + "\t" + "\t" + "\t" + "$" + trans2.getAmount() + "\n"
 //                        + trans3.getDate() + "\t" + "\t" + "\t" + "\t" + "\t" + trans3.getTime() + "\t" + "\t" + "\t" + "\t" + "\t" + trans3.getCardNumber() + "\t" + "\t" + "\t" + "\t" + "\t" + "$" + trans3.getAmount());

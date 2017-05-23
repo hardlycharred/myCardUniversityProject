@@ -15,19 +15,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.charliehard.gobus.R;
+import com.example.charliehard.gobus.dao.GoBusDAO;
 import com.example.charliehard.gobus.domain.Card;
 import com.example.charliehard.gobus.domain.Customer;
 import com.example.charliehard.gobus.domain.Transaction;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBContract;
 import com.example.charliehard.gobus.sqlite_friends.CustomerDBHelper;
 
-import java.util.ArrayList;
-
 public class TopUpActivity extends AppCompatActivity {
 
     SQLiteDatabase db;
     CustomerDBHelper customerDBHelper;
     Boolean validationErrors;
+    EditText amountEntry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class TopUpActivity extends AppCompatActivity {
         TextView curBalance = (TextView) findViewById(R.id.textView6);
         curBalance.setText("$" + card.getBalance().toString());
 
-        final EditText amountEntry = (EditText) findViewById(R.id.editAmount);
+        amountEntry = (EditText) findViewById(R.id.editAmount);
         final EditText cardEntry = (EditText) findViewById(R.id.editText3);
         final EditText cardNameEntry = (EditText) findViewById(R.id.editText4);
         final EditText expiryEntry = (EditText) findViewById(R.id.editText5);
@@ -196,13 +196,16 @@ public class TopUpActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent goHomeWithCustomerIntent = new Intent(TopUpActivity.this, HomeScreenActivity.class);
-                                goHomeWithCustomerIntent.putExtra("curCustomer", curCustomer);
-                                goHomeWithCustomerIntent.putExtra("card", card);
-                                ArrayList<Transaction> allTransactions = new ArrayList<>();
-                                allTransactions.add(trans1);
-                                allTransactions.add(trans2);
-                                allTransactions.add(trans3);
-                                goHomeWithCustomerIntent.putExtra("allTransactions", allTransactions);
+//                                goHomeWithCustomerIntent.putExtra("curCustomer", curCustomer);
+//                                goHomeWithCustomerIntent.putExtra("card", card);
+//                                ArrayList<Transaction> allTransactions = new ArrayList<>();
+//                                allTransactions.add(trans1);
+//                                allTransactions.add(trans2);
+//                                allTransactions.add(trans3);
+//                                goHomeWithCustomerIntent.putExtra("allTransactions", allTransactions);
+                                GoBusDAO goBusDAO = new GoBusDAO();
+                                Card retCard = goBusDAO.getCard();
+                                retCard.setBalance(retCard.getBalance() + Double.parseDouble(amountEntry.getText().toString()));
                                 startActivity(goHomeWithCustomerIntent);
                                 dialog.dismiss();
                             }

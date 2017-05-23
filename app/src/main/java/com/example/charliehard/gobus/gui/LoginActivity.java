@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import com.example.charliehard.gobus.R;
+import com.example.charliehard.gobus.dao.GoBusDAO;
 import com.example.charliehard.gobus.domain.Card;
 import com.example.charliehard.gobus.domain.Customer;
 import com.example.charliehard.gobus.domain.Transaction;
@@ -193,9 +194,13 @@ public class LoginActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent goHomeWithCustomerIntent = new Intent(LoginActivity.this, HomeScreenActivity.class);
-                                goHomeWithCustomerIntent.putExtra("curCustomer", curCustomer);
-                                goHomeWithCustomerIntent.putExtra("card", card);
-                                goHomeWithCustomerIntent.putExtra("allTransactions", allTransactions);
+                                GoBusDAO goBusDAO = new GoBusDAO();
+                                goBusDAO.setCustomer(curCustomer);
+                                goBusDAO.setCard(card);
+                                goBusDAO.setTransactions(allTransactions);
+//                                goHomeWithCustomerIntent.putExtra("curCustomer", curCustomer);
+//                                goHomeWithCustomerIntent.putExtra("card", card);
+//                                goHomeWithCustomerIntent.putExtra("allTransactions", allTransactions);
                                 startActivity(goHomeWithCustomerIntent);
                                 dialog.dismiss();
                             }

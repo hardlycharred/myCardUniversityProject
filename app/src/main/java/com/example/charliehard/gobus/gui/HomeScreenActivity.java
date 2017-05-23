@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.charliehard.gobus.R;
+import com.example.charliehard.gobus.dao.GoBusDAO;
 import com.example.charliehard.gobus.domain.Card;
 import com.example.charliehard.gobus.domain.Customer;
 import com.example.charliehard.gobus.domain.Transaction;
@@ -24,9 +25,7 @@ public class HomeScreenActivity extends AppCompatActivity {
     private TextView mTextMessage;
     private Customer curCustomer;
     private Card card;
-    private Transaction trans1;
-    private Transaction trans2;
-    private Transaction trans3;
+    private ArrayList<Transaction> allTransactions;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -56,10 +55,13 @@ public class HomeScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-        Intent intent = getIntent();
-        final Customer curCustomer = (Customer) intent.getSerializableExtra("curCustomer");
-        final Card card = (Card) intent.getSerializableExtra("card");
-        ArrayList<Transaction> allTransactions = (ArrayList) intent.getSerializableExtra("allTransactions");
+//        Intent intent = getIntent();
+        curCustomer = new GoBusDAO().getCustomer();
+        card = new GoBusDAO().getCard();
+        allTransactions = new GoBusDAO().getTransactions();
+
+//        final Customer curCustomer = (Customer) intent.getSerializableExtra("curCustomer");
+//        final Card card = (Card) intent.getSerializableExtra("card");
 
 
         mTextMessage = (TextView) findViewById(R.id.message);

@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.charliehard.gobus.R;
+import com.example.charliehard.gobus.dao.GoBusDAO;
 import com.example.charliehard.gobus.domain.Card;
 import com.example.charliehard.gobus.domain.Customer;
 import com.example.charliehard.gobus.domain.Transaction;
@@ -187,21 +188,21 @@ public class RegisterActivity extends AppCompatActivity {
             trans2.setId(newRowId2);
             trans2.setCardNumber(curCustomer.getCardNumber());
             trans2.setDate("2017-05-15");
-            trans2.setTime("07.45");
+            trans2.setTime("07:45");
             trans2.setAmount(1.56);
 
             // Create a new map of values, where column names are the keys
             ContentValues values5 = new ContentValues();
             values5.put(CustomerDBContract.FeedEntry.COLUMN_NAME_CARD_NUMBER, curCustomer.getCardNumber());
             values5.put(CustomerDBContract.FeedEntry.COLUMN_NAME_DATE, "2017-05-15");
-            values5.put(CustomerDBContract.FeedEntry.COLUMN_NAME_TIME, "17.15");
+            values5.put(CustomerDBContract.FeedEntry.COLUMN_NAME_TIME, "17:15");
             values5.put(CustomerDBContract.FeedEntry.COLUMN_NAME_AMOUNT, 2.10);
             long newRowId4 = db.insertOrThrow(CustomerDBContract.FeedEntry.TRANS_TABLE_NAME, null, values5);
             final Transaction trans3 = new Transaction();
             trans3.setId(newRowId2);
             trans3.setCardNumber(curCustomer.getCardNumber());
             trans3.setDate("2017-05-15");
-            trans3.setTime("17.15");
+            trans3.setTime("17:15");
             trans3.setAmount(2.10);
 
             if (!error) {
@@ -215,13 +216,18 @@ public class RegisterActivity extends AppCompatActivity {
                                 card.setCardNumber(curCustomer.getCardNumber());
                                 card.setBalance(4.32);
                                 Intent goHomeWithCustomerIntent = new Intent(RegisterActivity.this, HomeScreenActivity.class);
-                                goHomeWithCustomerIntent.putExtra("curCustomer", curCustomer);
-                                goHomeWithCustomerIntent.putExtra("card", card);
+//                                goHomeWithCustomerIntent.putExtra("curCustomer", curCustomer);
+//                                goHomeWithCustomerIntent.putExtra("card", card);
+                                GoBusDAO goBusDAO = new GoBusDAO();
+                                goBusDAO.setCustomer(curCustomer);
+                                goBusDAO.setCard(card);
                                 ArrayList<Transaction> allTransactions = new ArrayList<>();
                                 allTransactions.add(trans1);
                                 allTransactions.add(trans2);
                                 allTransactions.add(trans3);
-                                goHomeWithCustomerIntent.putExtra("allTransactions", allTransactions);
+//                                goHomeWithCustomerIntent.putExtra("allTransactions", allTransactions);
+                                goBusDAO.setTransactions(allTransactions);
+
                                 startActivity(goHomeWithCustomerIntent);
                                 dialog.dismiss();
                             }

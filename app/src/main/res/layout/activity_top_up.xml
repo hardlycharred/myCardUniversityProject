@@ -51,7 +51,7 @@
                 android:ems="10"
                 android:hint="$"
 
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:textAlignment="center"
                 android:textColor="@android:color/black" />
 
@@ -141,7 +141,7 @@
                 android:layout_marginTop="480dp"
                 android:ems="10"
                 android:hint="Expiry"
-                android:inputType="textPersonName"
+                android:inputType="date"
                 android:textAlignment="center" />
 
         </FrameLayout>

@@ -1,4 +1,4 @@
-# myCardUniversityProject
+# MyCard
 ## A proof-of-concept card management app, built in ~4 weeks for the University of Otago SENG301 course.
 
 This Android application was built in around 4 weeks by a group of 4 students, being myself (Charlie Hard), Emily McConnachie, Emily Strang, and Terry Liu. The aim of the project was to produce a technical solution to an everyday personal inconvenice. We decided to target bus card credit management, and set about building the app.
